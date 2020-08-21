@@ -1,0 +1,30 @@
+{
+  "name": "funbox",
+  "version": "1.0.0",
+  "main": "index.jsx",
+  "scripts": {
+    "start":"webpack-dev-server --open",
+    "build":"webpack --mode production"
+  },
+  "author": "Dmitry Baranov",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.1",
+    "file-loader": "^6.0.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
