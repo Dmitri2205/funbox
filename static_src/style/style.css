@@ -28,7 +28,8 @@ html {
     font-family: "Exo2.0" ,sans-serif; }
     @media screen and (max-width: 720px) {
       .app h4 {
-        font-size: 25px; } }
+        font-size: 25px;
+        margin-bottom: 24px; } }
   .app .selected {
     display: block;
     width: auto;
@@ -99,10 +100,8 @@ html {
         font-size: 12px;
         margin: -10px auto 49px auto;
         opacity: 1;
-        -webkit-transition: opacity 0.5s;
-        transition: opacity 0.5s;
-        -webkit-animation: bottom 1s ease-in-out;
-                animation: bottom 1s ease-in-out; }
+        -webkit-animation: bottom .5s ease-in-out;
+                animation: bottom .5s ease-in-out; }
         .app__wraper_helper .description__text_missed {
           display: block;
           text-align: center;
@@ -116,33 +115,43 @@ html {
         .app__wraper_helper:hover .description__text {
           display: none;
           opacity: 0;
-          -webkit-transition: 1s;
-          transition: 1s;
-          -webkit-animation: disapear 1s ease-in-out;
-                  animation: disapear 1s ease-in-out; }
+          -webkit-transition: .5s;
+          transition: .5s;
+          -webkit-animation: disapear .5s ease-in-out;
+                  animation: disapear .5s ease-in-out;
+          -webkit-animation-delay: .3s;
+                  animation-delay: .3s; }
 @-webkit-keyframes disapear {
   0% {
     opacity: 1; }
+  70% {
+    opacity: 0; }
   100% {
     opacity: 0; } }
 @keyframes disapear {
   0% {
     opacity: 1; }
+  70% {
+    opacity: 0; }
   100% {
     opacity: 0; } }
         .app__wraper_helper:hover .buy {
           display: block;
           -webkit-transition: 0.5s;
           transition: 0.5s;
-          -webkit-animation: bottom 1s ease-in-out;
-                  animation: bottom 1s ease-in-out; }
+          -webkit-animation: bottom .5s ease-in-out;
+                  animation: bottom .5s ease-in-out; }
 @-webkit-keyframes bottom {
   0% {
+    opacity: 0; }
+  70% {
     opacity: 0; }
   100% {
     opacity: 1; } }
 @keyframes bottom {
   0% {
+    opacity: 0; }
+  70% {
     opacity: 0; }
   100% {
     opacity: 1; } }
@@ -168,24 +177,25 @@ html {
         shape-outside: polygon(0 9%, 14% 0, 100% 0, 100% 100%, 0 100%, 0% 50%);
         -webkit-clip-path: polygon(0 9%, 14% 0, 100% 0, 100% 100%, 0 100%, 0% 4%);
                 clip-path: polygon(0 9%, 14% 0, 100% 0, 100% 100%, 0 100%, 0% 4%);
-        border-radius: 5px;
+        border-radius: 13px;
         overflow: visible; }
         .app__wraper_helper-item p {
-          width: 150%;
+          width: 130%;
           text-align: left;
           margin: 0;
           color: #666666; }
-        .app__wraper_helper-item:before {
+        .app__wraper_helper-item .borderPiece {
           display: block;
           content: " ";
           width: 35%;
           height: 4px;
           background-color: #1698d9;
           position: relative;
-          top: 3px;
+          top: 2px;
           left: -19px;
           -webkit-transform: rotateZ(-44deg);
-                  transform: rotateZ(-44deg); }
+                  transform: rotateZ(-44deg);
+          z-index: 9999; }
         .app__wraper_helper-itemText {
           text-align: left;
           display: block;
@@ -198,7 +208,40 @@ html {
           background: url(../../dist/kot.png) bottom no-repeat;
           background-size: 100%;
           background-position: 0 220px;
-          background-color: white; }
+          background-color: white;
+          border-radius: 10px; }
+@-webkit-keyframes selectEffect {
+  0% {
+    -webkit-filter: grayscale(0%);
+            filter: grayscale(0%); }
+  25% {
+    -webkit-filter: grayscale(60%);
+            filter: grayscale(60%); }
+  50% {
+    -webkit-filter: grayscale(130%);
+            filter: grayscale(130%); }
+  75% {
+    -webkit-filter: grayscale(60%);
+            filter: grayscale(60%); }
+  100% {
+    -webkit-filter: grayscale(0%);
+            filter: grayscale(0%); } }
+@keyframes selectEffect {
+  0% {
+    -webkit-filter: grayscale(0%);
+            filter: grayscale(0%); }
+  25% {
+    -webkit-filter: grayscale(60%);
+            filter: grayscale(60%); }
+  50% {
+    -webkit-filter: grayscale(130%);
+            filter: grayscale(130%); }
+  75% {
+    -webkit-filter: grayscale(60%);
+            filter: grayscale(60%); }
+  100% {
+    -webkit-filter: grayscale(0%);
+            filter: grayscale(0%); } }
           .app__wraper_helper-itemText .weight {
             display: inline-block;
             width: 80px;

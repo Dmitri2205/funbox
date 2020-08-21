@@ -27,6 +27,7 @@ html,body{
       font-family:"Exo2.0" ,sans-serif;
       @media screen and (max-width:720px) {
         font-size: 25px;
+        margin-bottom: 24px;
       }
     }
     .selected{
@@ -93,8 +94,7 @@ html,body{
           font-size: 12px;
           margin: -10px auto 49px auto ;
           opacity: 1;
-          transition: opacity 0.5s;
-          animation: bottom 1s ease-in-out;
+          animation: bottom .5s ease-in-out;
           &_missed{
           display: block;
           text-align: center;
@@ -110,11 +110,14 @@ html,body{
           .description__text{
             display: none;
             opacity: 0;
-            transition: 1s;
-            animation:disapear 1s ease-in-out;
+            transition: .5s;
+            animation:disapear .5s ease-in-out;
+            animation-delay: .3s;
             @keyframes disapear {
               0%{
                 opacity: 1;
+              }70%{
+                opacity: 0;
               }100%{
                 opacity: 0;
               }
@@ -123,10 +126,12 @@ html,body{
           .buy{
             display: block;
             transition: 0.5s;
-            animation: bottom 1s ease-in-out;
+            animation: bottom .5s ease-in-out;
           }
           @keyframes bottom {
             0%{;
+              opacity: 0;
+            }70%{
               opacity: 0;
             }100%{
               opacity: 1;
@@ -165,24 +170,25 @@ html,body{
         border:3px solid #1698d9;
         shape-outside: polygon(0 9%, 14% 0, 100% 0, 100% 100%, 0 100%, 0% 50%);
         clip-path: polygon(0 9%, 14% 0, 100% 0, 100% 100%, 0 100%, 0% 4%);
-        border-radius: 5px;
+        border-radius: 13px;
         overflow: visible;
         p{
-          width: 150%;
+          width: 130%;
           text-align: left;
           margin:0;
           color:#666666;
         }
-        &:before{
+        .borderPiece{
           display: block;
           content: " ";
           width: 35%;
           height: 4px;
           background-color:#1698d9;
           position: relative;
-          top:3px;
+          top:2px;
           left:-19px;
           transform: rotateZ(-44deg);
+          z-index:9999;
         }
         &Text{
           text-align: left;
@@ -197,6 +203,20 @@ html,body{
           background-size: 100%;
           background-position: 0 220px;
           background-color: white;
+          border-radius: 10px;
+          @keyframes selectEffect {
+            0%{
+              filter: grayscale(0%);
+            }25%{
+              filter: grayscale(60%);
+            }50%{
+              filter: grayscale(130%);
+            }75%{
+              filter: grayscale(60%);
+            }100%{
+              filter: grayscale(0%);
+            }
+          }
            .weight{
             display: inline-block;
             width: 80px;
