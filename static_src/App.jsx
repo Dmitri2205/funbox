@@ -10,7 +10,7 @@ export default class App extends React.Component {
         cart: []
     };
     componentDidMount() {
-        setTimeout(() => { this.promptAnswer() }, 800);
+        // setTimeout(() => { this.promptAnswer() }, 800);
 
     };
     onHover = () => {
@@ -70,6 +70,8 @@ export default class App extends React.Component {
         });
         if (index !== null) {
             searchAndSlice.splice(index, 1);
+        }else if (index === null) {
+        alert('Этот товар не выбран');
         };
         this.setState({ selected: searchAndSlice.sort((a, b) => { return a - b }) });
     }

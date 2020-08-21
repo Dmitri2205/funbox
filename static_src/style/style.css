@@ -1,27 +1,31 @@
 html, body {
   margin: 0;
   padding: 0; }
+  html body, body body {
+    background: url(../../dist/Pattern.png) center no-repeat;
+    background-size: cover; }
 
 .app {
   display: block;
   width: 100%;
   height: auto;
-  background: url(../../dist/Pattern.png) center no-repeat;
-  background-size: cover;
   font-family: "Trebuchet MS" ,sans-serif; }
-  @media screen and (max-width: 414px) and (max-width: 720px) {
+  @media screen and (max-width: 720px) {
+    .app {
+      height: 90%; } }
+  @media screen and (min-width: 720px) and (max-width: 1227px) {
     .app {
       height: 90%;
-      padding: 14% 0; } }
+      padding: 4% 0; } }
   .app h4 {
     color: white;
     text-align: center;
-    margin: 0;
-    padding: 47px 0 0 0;
+    margin: 47px auto 0 auto;
+    padding: 0;
     font-size: 36px;
     font-weight: 100;
     font-family: "Exo2.0" ,sans-serif; }
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 720px) {
       .app h4 {
         font-size: 25px; } }
   .app .selected {
@@ -59,14 +63,27 @@ html, body {
     height: 100%;
     margin: 0 auto;
     color: white; }
+    @media screen and (min-width: 414px) and (max-width: 890px) {
+      .app__wraper {
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        width: 100%; } }
+    @media screen and (min-width: 1024px) {
+      .app__wraper {
+        width: 95%;
+        margin: 0 auto; } }
     .app__wraper_helper {
       display: block;
-      max-width: 320px;
-      max-height: 487px;
-      margin: 5%; }
-      @media screen and (max-width: 414px) and (max-width: 720px) {
+      width: 320px;
+      height: 487px;
+      margin: 25px auto; }
+      @media screen and (min-width: 380px) and (max-width: 890px) {
         .app__wraper_helper {
           margin: 10% auto; } }
+      @media screen and (min-width: 1024px) and (max-width: 1440px) {
+        .app__wraper_helper {
+          margin: 1% auto; } }
       .app__wraper_helper .buy {
         display: none;
         font-size: 12px;
@@ -82,7 +99,7 @@ html, body {
         display: block;
         text-align: center;
         font-size: 12px;
-        margin: -10px auto 50px auto;
+        margin: -10px auto 49px auto;
         opacity: 1;
         -webkit-transition: opacity 0.5s;
         transition: opacity 0.5s; }
