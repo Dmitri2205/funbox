@@ -103,13 +103,24 @@ export default class App extends React.Component {
 
         this.setState({ cart: [...userCart] });
 
+    };
+
+
+    selectEffect = (e) => {
+    	e.target.style.filter = "contrast(150%)";
+    };
+    leaveEffect=(e) => {
+    	e.target.style.filter = "contrast(100%)";
     }
+
+
+
+
 
     render() {
         let { missed, selected, cart } = this.state;
         return (
             <div className="app">
-    <h4>Ты сегодня покормил кота?</h4>
     
     <div className="selected" 
     	 style={selected.length === 0 ? {display:'none'}:{display:' '}}>
@@ -117,12 +128,16 @@ export default class App extends React.Component {
     	 <ul>{cart}</ul>
     </div>
       
+    <h4>Ты сегодня покормил кота?</h4>
       <div className="app__wraper">
         <div className="app__wraper_helper" 
     	style={missed === 1 ? {filter:'grayscale(100%)'} : {filter:'unset'}}>
     {/* Вспомогательная обёртка */}
         <div className="app__wraper_helper-item">
-			<div className="app__wraper_helper-itemText" 
+			<div className="app__wraper_helper-itemText"
+	 		onMouseOver={(event)=>{this.selectEffect(event)}}
+	        onMouseLeave={(event)=>{this.leaveEffect(event)}}
+ 
 			onClick={(event)=>{this.handleClick('-1')}}>
 				<p style={{paddingTop:'27px'}}>Сказочное заморское яство</p>
 				<h1>Нямушка</h1>

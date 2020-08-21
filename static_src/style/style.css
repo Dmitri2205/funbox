@@ -1,14 +1,15 @@
 html, body {
   margin: 0;
   padding: 0; }
-  html body, body body {
-    background: url(../../dist/Pattern.png) center no-repeat;
-    background-size: cover; }
+
+html {
+  background: url(../../dist/Pattern.png) center no-repeat;
+  background-size: cover; }
 
 .app {
   display: block;
   width: 100%;
-  height: auto;
+  margin: auto;
   font-family: "Trebuchet MS" ,sans-serif; }
   @media screen and (max-width: 720px) {
     .app {
@@ -20,7 +21,7 @@ html, body {
   .app h4 {
     color: white;
     text-align: center;
-    margin: 47px auto 0 auto;
+    margin: 60px auto 0 auto;
     padding: 0;
     font-size: 36px;
     font-weight: 100;
@@ -75,21 +76,18 @@ html, body {
         margin: 0 auto; } }
     .app__wraper_helper {
       display: block;
-      width: 320px;
-      height: 487px;
       margin: 25px auto; }
       @media screen and (min-width: 380px) and (max-width: 890px) {
         .app__wraper_helper {
-          margin: 10% auto; } }
+          margin: 0 auto; } }
       @media screen and (min-width: 1024px) and (max-width: 1440px) {
         .app__wraper_helper {
-          margin: 1% auto; } }
+          margin: 0 auto; } }
       .app__wraper_helper .buy {
         display: none;
         font-size: 12px;
         text-align: center;
         margin: -10px auto 50px auto;
-        opacity: 0;
         -webkit-transition: 1s;
         transition: 1s; }
         .app__wraper_helper .buy span {
@@ -102,7 +100,9 @@ html, body {
         margin: -10px auto 49px auto;
         opacity: 1;
         -webkit-transition: opacity 0.5s;
-        transition: opacity 0.5s; }
+        transition: opacity 0.5s;
+        -webkit-animation: bottom 1s ease-in-out;
+                animation: bottom 1s ease-in-out; }
         .app__wraper_helper .description__text_missed {
           display: block;
           text-align: center;
@@ -116,13 +116,36 @@ html, body {
         .app__wraper_helper:hover .description__text {
           display: none;
           opacity: 0;
-          -webkit-transition: 0.5s;
-          transition: 0.5s; }
+          -webkit-transition: 1s;
+          transition: 1s;
+          -webkit-animation: disapear 1s ease-in-out;
+                  animation: disapear 1s ease-in-out; }
+@-webkit-keyframes disapear {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@keyframes disapear {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
         .app__wraper_helper:hover .buy {
           display: block;
-          opacity: 100;
           -webkit-transition: 0.5s;
-          transition: 0.5s; }
+          transition: 0.5s;
+          -webkit-animation: bottom 1s ease-in-out;
+                  animation: bottom 1s ease-in-out; }
+@-webkit-keyframes bottom {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes bottom {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
       .app__wraper_helper:nth-child(2) .app__wraper_helper-item:first-child {
         border: 3px solid #d91667; }
         .app__wraper_helper:nth-child(2) .app__wraper_helper-item:first-child:before {

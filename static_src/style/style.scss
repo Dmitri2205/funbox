@@ -1,14 +1,14 @@
 html,body{
   margin: 0;
   padding: 0;
-  body{background:url(../../dist/Pattern.png) center no-repeat;
-  background-size:cover;}
 }
+  html{background:url(../../dist/Pattern.png) center no-repeat;
+  background-size:cover;}
 
 .app{
   display: block;
   width: 100%;
-  height: auto;
+  margin: auto;
   font-family:"Trebuchet MS" ,sans-serif;
   @media screen and (max-width:720px)  {
     height: 90%;
@@ -20,7 +20,7 @@ html,body{
     h4{
       color: white;
       text-align: center;
-      margin:47px auto 0 auto;
+      margin:60px auto 0 auto;
       padding:0;
       font-size: 36px;
       font-weight: 100;
@@ -67,14 +67,12 @@ html,body{
     }
     &_helper{
       display: block;
-      width: 320px;
-      height: 487px;
       margin:25px auto;
       @media screen and (min-width: 380px) and (max-width: 890px) {
-        margin:  10% auto;
+        margin:  0 auto;
       }
       @media screen and (min-width: 1024px) and (max-width: 1440px) {
-        margin: 1% auto;
+        margin:0 auto;
       }
       
       .buy{
@@ -82,7 +80,6 @@ html,body{
           font-size:12px;
           text-align: center;
           margin: -10px auto 50px auto;
-          opacity: 0;
           transition: 1s;
           span{
             color:#1698d9;
@@ -97,6 +94,7 @@ html,body{
           margin: -10px auto 49px auto ;
           opacity: 1;
           transition: opacity 0.5s;
+          animation: bottom 1s ease-in-out;
           &_missed{
           display: block;
           text-align: center;
@@ -112,12 +110,27 @@ html,body{
           .description__text{
             display: none;
             opacity: 0;
-            transition: 0.5s;
+            transition: 1s;
+            animation:disapear 1s ease-in-out;
+            @keyframes disapear {
+              0%{
+                opacity: 1;
+              }100%{
+                opacity: 0;
+              }
+            }
           }
           .buy{
             display: block;
-            opacity: 100;
             transition: 0.5s;
+            animation: bottom 1s ease-in-out;
+          }
+          @keyframes bottom {
+            0%{;
+              opacity: 0;
+            }100%{
+              opacity: 1;
+            }
           }
         }
         &:nth-child(2){
