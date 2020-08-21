@@ -6,77 +6,105 @@ import style from "./style/style.css";
 export default class App extends React.Component {
     state = {
         selected: [],
-        missed:0,
-        cart:[]
+        missed: 0,
+        cart: []
     };
-    componentDidMount(){
-    	setTimeout(()=>{this.promptAnswer()},800);
+    componentDidMount() {
+        setTimeout(() => { this.promptAnswer() }, 800);
 
     };
     onHover = () => {
 
     };
-    promptAnswer = ()=>{  //Обработчик "недоступных упаковок".Максимальное знаечение:1 число
-    	const answer = prompt('Что убрать?(Введите номер.Доступно только 1 значение)');
-    	this.setState({missed:Number(answer)});
+    promptAnswer = () => { //Обработчик "недоступных упаковок".Максимальное знаечение:1 число
+        const answer = prompt('Что убрать?(Введите номер.Доступно только 1 значение)');
+        this.setState({ missed: Number(answer) });
     };
-    
-    	handleClick = (value)=>{  //Обработчик клика
-    	let selected = this.state;
-    	console.log(value);
-    	var sorted = [...this.state.selected,value].sort((a,b)=>{return a-b});
-		switch (value) {
-			case '1':
-    			this.setState({selected:sorted});
-				break;
-			case '2':
-    			this.setState({selected:sorted});
-				break;
-				case '3':
-    			this.setState({selected:sorted});
-    			break;
-			};    	
-		// var result = selected.find((element,index,array)=>{
-			// if (element === '1') {
-				// selected.splice(indexOf(element),1);
-				// return;
-			// };
-		// });			3
-    	setTimeout(()=>{
-	    	this.userSelect();
-    	},300);
-};
-    	userSelect = ()=>{
-    		let {selected,cart} = this.state;
-    		let fuagra = 0;                  //Колличество упаковок*
-    		let fish = 0;								
-    		let kura = 0;					
 
-    		const userCart = selected.map((item,i)=>{ //Добавление в "корзину"
-    			if (item === '1'){
-    			fuagra += 1;	
-    			let element = <li key={i}>Фуа-гра</li>; 
-    			return element;
-    			}else if (item === '2') {	
-    			fish += 1;	
-    			let element = <li key={i}>Рыба</li>; 
-    			return element;
-    			}else{	
-    			kura += 1;	
-    			let element = <li key={i}>Кура</li>; 
-    			return element;
-    			};
-    		});
-    		let count = [];
-    		count.splice(0,0,fuagra,fish,kura);
-    		console.log(count);
+    handleClick = (value) => { //Обработчик клика
+        let selected = this.state;
+        console.log(value);
+        var sorted = [...this.state.selected, value].sort((a, b) => { return a - b });
+        switch (value) {
+            case '1':
+                this.setState({ selected: sorted });
+                break;
+            case '2':
+                this.setState({ selected: sorted });
+                break;
+            case '3':
+                this.setState({ selected: sorted });
+                break;
+            case "-1":                   //Кейсы удаления
+                this.deleteItem(value);
+                break;
+            case "-2":
+                this.deleteItem(value);
+                break;
+            case "-3":
+                this.deleteItem(value);
+                break;
+        };
+        setTimeout(() => {
+            this.userSelect();
+        }, 300);
+    };
 
-    		this.setState({cart:[...userCart]});
+    deleteItem = (value) => {
+        const { selected } = this.state;
+        let array = [];
+        let index = null;
+        const searchAndSlice = selected.map((item, i) => {
+            if (value === '-1' && item === '1' && index === null) {
+                console.log(item, i);
+                index = i;
+            } else if (value === '-2' && item === '2' && index === null) {
+                console.log(item, i);
+                index = i;
+            } else if (value === '-3' && item === '3' && index === null) {
+                console.log(item, i);
+                index = i;
+            } else {
+                return item;
+            };
+        });
+        if (index !== null) {
+            searchAndSlice.splice(index, 1);
+        };
+        this.setState({ selected: searchAndSlice.sort((a, b) => { return a - b }) });
+    }
+
+
+    userSelect = () => {
+        let { selected, cart } = this.state;
+        let fuagra = 0; //Колличество упаковок*
+        let fish = 0;
+        let kura = 0;
+
+        const userCart = selected.map((item, i) => { //Добавление в "корзину"
+            if (item === '1') {
+                fuagra += 1;
+                let element = <li key={i}>Фуа-гра</li>;
+                return element;
+            } else if (item === '2') {
+                fish += 1;
+                let element = <li key={i}>Рыба</li>;
+                return element;
+            } else {
+                kura += 1;
+                let element = <li key={i}>Кура</li>;
+                return element;
+            };
+        });
+        let count = [];
+        count.splice(0, 0, fuagra, fish, kura);
+
+        this.setState({ cart: [...userCart] });
 
     }
 
     render() {
-    	let {missed,selected,cart} = this.state;
+        let { missed, selected, cart } = this.state;
         return (
             <div className="app">
     <h4>Ты сегодня покормил кота?</h4>
@@ -119,7 +147,9 @@ export default class App extends React.Component {
 		 style={missed === 2 ? {filter:'grayscale(100%)'} : {filter:'unset'}}>
 		{/* Вспомогательная обёртка */}
         <div className="app__wraper_helper-item">
-			<div className="app__wraper_helper-itemText">
+			<div className="app__wraper_helper-itemText"
+			onClick={(event)=>{this.handleClick('-2')}}
+			>
 					<p style={{paddingTop:'27px'}}>Сказочное заморское яство</p>
 					<h1>Нямушка</h1>
 					<p>с рыбой</p>
@@ -145,7 +175,8 @@ export default class App extends React.Component {
 			 style={missed === 3 ? {filter:'grayscale(100%)'} : {filter:'unset'}}>
 			{/* Вспомогательная обёртка */}
         <div className="app__wraper_helper-item">
-			<div className="app__wraper_helper-itemText">
+			<div className="app__wraper_helper-itemText"
+			onClick={(event)=>{this.handleClick('-3')}}>
 					<p style={{paddingTop:'27px'}}>Сказочное заморское яство</p>
 					<h1>Нямушка</h1>
 					<p>С курой</p>

@@ -9,10 +9,14 @@ html, body {
   background: url(../../dist/Pattern.png) center no-repeat;
   background-size: cover;
   font-family: "Trebuchet MS" ,sans-serif; }
+  @media screen and (max-width: 414px) and (max-width: 720px) {
+    .app {
+      height: 90%;
+      padding: 14% 0; } }
   .app h4 {
     color: white;
     text-align: center;
-    margin: 0 0 24px 0;
+    margin: 0;
     padding: 47px 0 0 0;
     font-size: 36px;
     font-weight: 100;
@@ -57,12 +61,17 @@ html, body {
     color: white; }
     .app__wraper_helper {
       display: block;
-      width: 320px; }
+      max-width: 320px;
+      max-height: 487px;
+      margin: 5%; }
+      @media screen and (max-width: 414px) and (max-width: 720px) {
+        .app__wraper_helper {
+          margin: 10% auto; } }
       .app__wraper_helper .buy {
         display: none;
         font-size: 12px;
         text-align: center;
-        margin: -10px auto -14px auto;
+        margin: -10px auto 50px auto;
         opacity: 0;
         -webkit-transition: 1s;
         transition: 1s; }
@@ -85,16 +94,18 @@ html, body {
           opacity: 1;
           -webkit-transition: opacity 0.5s;
           transition: opacity 0.5s; }
-      .app__wraper_helper:hover .description__text {
-        display: none;
-        opacity: 0;
-        -webkit-transition: 0.5s;
-        transition: 0.5s; }
-      .app__wraper_helper:hover .buy {
-        display: block;
-        opacity: 100;
-        -webkit-transition: 0.5s;
-        transition: 0.5s; }
+      .app__wraper_helper:hover {
+        cursor: pointer; }
+        .app__wraper_helper:hover .description__text {
+          display: none;
+          opacity: 0;
+          -webkit-transition: 0.5s;
+          transition: 0.5s; }
+        .app__wraper_helper:hover .buy {
+          display: block;
+          opacity: 100;
+          -webkit-transition: 0.5s;
+          transition: 0.5s; }
       .app__wraper_helper:nth-child(2) .app__wraper_helper-item:first-child {
         border: 3px solid #d91667; }
         .app__wraper_helper:nth-child(2) .app__wraper_helper-item:first-child:before {
