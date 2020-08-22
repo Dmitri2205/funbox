@@ -6,16 +6,56 @@ export default class App extends React.Component {
     state = {
         selected: [], //Порядковый массив корзины для сопоставления
         missed: 0,   //Порядковый номер недоступой упаковки
-        cart: [] //Массив с элементами списка
+        cart: [], //Массив с элементами списка
+        info:
+        [    
+	        {
+	         name:"фуа-гра",
+	         count:'10',
+	         weight:'0,5'
+	    	},
+	    	{
+	    	 name:"рыбой",
+	    	 count:"40",
+	    	 weight:"2"	
+	    	},
+	    	{
+		     name:"курой",
+		     count:"100",
+		     weight:"5"
+	    	}
+        ]   //Массив информации о товаре
     };
 
     componentDidMount() {
         setTimeout(() => { this.promptAnswer() }, 800); //Выбор недоступной упаковки
     };
-
+    stop = (e) => {      //Функция отмены всплытия событий для дочернего элемента 
+    	e.stopPropagation(); 
+    };
     promptAnswer = () => { //Обработчик "недоступных упаковок".Максимальное знаечение:1
         const answer = prompt('Что убрать?(Введите номер.Доступно только 1 значение)');
         this.setState({ missed: Number(answer) });
+    };
+    infoChange = (e,type,index) => { //Изменение информации упаковки
+    	const {info} = this.state;
+    	this.stop(e);     //Отмена всплытия события для элемента
+    	if (type === "name") {
+	    	const name = prompt("с Чем?");
+	    	let arr = [...this.state.info]; //Копирование массива через spread 
+	    	arr[index].name = name;        //Присвоение значения свойству по индексу элемента
+	    	this.setState({info:arr});    //Обновление state 
+	    }else if (type === "count") {
+	    	const count = prompt("Введите количество порций");
+	    	let arr = [...this.state.info];
+	    	arr[index].count = count;
+	    	this.setState({info:arr});
+	    }else if (type === "weight") {
+	    	const weight = prompt ("Введите вес");
+	    	let arr = [...this.state.info];
+	    	arr[index].weight = weight;
+	    	this.setState({info:arr});
+	    };
     };
 
     handleClick = (value) => { //Обработчик клика
@@ -41,6 +81,9 @@ export default class App extends React.Component {
             case "-3":
                 this.deleteItem(value);
                 break;
+            case 'info':
+
+            break;
         };
         setTimeout(() => {  //Вызов инициализации создания элементов корзины с таймаутом для успешной обработки порядкового массива SELECTED
             this.userSelect();
@@ -73,16 +116,16 @@ export default class App extends React.Component {
     }
 
     userSelect = () => {    //Инициация создания элементов корзины
-        let { selected, cart } = this.state;
+        let { selected, cart, info } = this.state;
         const userCart = selected.map((item, i) => { //Добавление в "корзину"
             if (item === '1') {
-                let element = <li key={i}>Фуа-гра</li>;
+                let element = <li key={i}>c {info[0].name}</li>;
                 return element;
             } else if (item === '2') {
-                let element = <li key={i}>Рыба</li>;
+                let element = <li key={i}>c {info[1].name}</li>;
                 return element;
             } else {
-                let element = <li key={i}>Кура</li>;
+                let element = <li key={i}>c {info[2].name}</li>;
                 return element;
             };
         });
@@ -98,7 +141,7 @@ export default class App extends React.Component {
     }
 
 render() {
-        let { missed, selected, cart } = this.state;
+        let { missed, selected, cart,info } = this.state;
         return (
 	<div className="app">
 			<div className="selected" 
@@ -121,11 +164,23 @@ render() {
 						onClick={(event)=>{this.handleClick('-1')}}>
 							<p style={{paddingTop:'27px'}}>Сказочное заморское яство</p>
 							<h1>Нямушка</h1>
-							<p>с фуа-гра</p>
-							<p><b>10</b> порций <br/>	
+							<p onClick={(event)=>{this.infoChange(event,"name",0)}}
+							   style={{ position:'relative',zIndex:'9999'}}
+							>
+							с {info[0].name}</p>
+							<p>
+							<b onClick={(event)=>{this.infoChange(event,"count",0)}}
+							   style={{ position:'relative',zIndex:'9999',marginRight:"2px"}}
+							>{info[0].count}</b>порций <br/>	
 							 мышь в подарок
 							</p>	
-		        			<span className="weight"><p>0,5</p>кг </span>
+		        			<span className="weight" 
+		        				  onClick={(event)=>{this.infoChange(event,"weight",0)}}
+							   	  style={{zIndex:'9999'}}
+							 >
+							 <p>{info[0].weight}</p>
+							 	кг
+							 </span>
 					</div>
 		        </div>
 
@@ -136,7 +191,7 @@ render() {
 		        className='description__text'>Печень утки разварная с артишоками.</p>
 		        
 		         <p style={missed === 1 ? {display:' ' ,color:"#1698d9"} : {display:"none"}} 
-		        className='description__text_missed'>Печалька.С фуа-гра закончился.</p>
+		        className='description__text_missed'>Печалька.С {info[0].name} закончился.</p>
 
 		        </div>
 				
@@ -153,11 +208,23 @@ render() {
 						 >
 							<p style={{paddingTop:'27px'}}>Сказочное заморское яство</p>
 							<h1>Нямушка</h1>
-							<p>с рыбой</p>
-							<p><b>40</b> порций <br/>	
+							<p onClick={(event)=>{this.infoChange(event,"name",1)}}
+							   style={{ position:'relative',zIndex:'9999'}}>
+							 с {info[1].name}
+							 </p>
+							<p>
+							<b onClick={(event)=>{this.infoChange(event,"count",1)}}
+							   style={{ position:'relative',zIndex:'9999',marginRight:"2px"}}
+							 >{info[1].count}</b> порций <br/>	
 						 	<b>2</b> мыши в подарок
 							</p>	
-		        			<span className="weight"><p>2</p>кг </span> 
+		        			<span className="weight" 
+		        				  onClick={(event)=>{this.infoChange(event,"weight",1)}}
+							   	  style={{zIndex:'9999'}}
+		        			>
+		        			<p>{info[1].weight}</p>
+		        				кг
+		        			</span> 
 						</div>	
 		        	</div>
 		      
@@ -168,7 +235,7 @@ render() {
 		        className='description__text'>Головы щучьи с чесноком да свежайшая сёмгушка.</p>
 		        
 		        <p style={missed === 2 ? {display:' ',color:"#d91667"} : {display:"none"}} 
-		        className='description__text_missed'>Печалька.С рыбой закончился.</p>
+		        className='description__text_missed'>Печалька.С {info[1].name} закончился.</p>
 		       
 		        </div>  
 		   
@@ -185,11 +252,25 @@ render() {
 						onClick={(event)=>{this.handleClick('-3')}}>
 							<p style={{paddingTop:'27px'}}>Сказочное заморское яство</p>
 							<h1>Нямушка</h1>
-							<p>С курой</p>
-							<p><b>40</b> порций <br/>	
-						 	<b>2</b> мыши в подарок
+							<p onClick={(event)=>{this.infoChange(event,"name",2)}}
+							   style={{ position:'relative',zIndex:'9999'}}>
+							с {info[2].name}
+							</p>
+							<p>
+							<b onClick={(event)=>{this.infoChange(event,"count",2)}}
+							   style={{ position:'relative',zIndex:'9999',marginRight:"2px"}}
+							>{info[2].count}</b> порций <br/>	
+						 	<b>5</b> мышей в подарок
+						 	<br/>
+						 	заказчик доволен
 							</p>	
-		        			<span className="weight"><p>0,7</p>кг </span> 
+		        			<span className="weight" 
+		        			 onClick={(event)=>{this.infoChange(event,"weight",2)}}
+							 style={{zIndex:'9999'}}
+		        			>
+		        			<p>{info[2].weight}</p>
+		        				кг
+		        			</span> 
 						</div>	
 		        	</div>
 		      
@@ -200,7 +281,7 @@ render() {
 		        className='description__text'>Филе циплят с трюфелями в бульоне.</p>
 		        
 		        <p style={missed === 3 ? {display:' ',color:'#FFF44B'} : {display:"none"}} 
-		        className='description__text_missed'>Печалька.С курой закончился.</p>  	</div>
+		        className='description__text_missed'>Печалька.С {info[2].name} закончился.</p>  	</div>
  		</div>
   </div>
         )
