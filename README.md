@@ -42,9 +42,9 @@ HTML/CSS/JS
 Так же использование командой одного и того же препроцессора/конфигурации сборщика и т.д.
 
 
-Многостраничных проектов пока выполнять не доводилось.Для вёрстки использую Sublime Text3 + Emmet + BrowserSync + KOALA + SCSS + БЭМ + JS + github.
+Многостраничных проектов пока выполнять не доводилось.Для вёрстки использую:Sublime Text3 + Emmet + BrowserSync + KOALA + SCSS + БЭМ + JS + github.
 <br/>
-Для SPA и PWA использую Vue/React + webpack + babel + webpack-devserver + webpack-CLI + NPM + github.
+Для SPA и PWA использую:Vue/React + webpack + babel + webpack-devserver + webpack-CLI + NPM + github.
 
 
 <h4>Q3:</h4>
