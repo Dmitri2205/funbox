@@ -43,6 +43,7 @@ HTML/CSS/JS
 
 
 Многостраничных проектов пока выполнять не доводилось.Для вёрстки использую Sublime Text3 + Emmet + BrowserSync + KOALA + SCSS + БЭМ + JS + github.
+<br/>
 Для SPA и PWA использую Vue/React + webpack + babel + webpack-devserver + webpack-CLI + NPM + github.
 
 
@@ -52,14 +53,20 @@ HTML/CSS/JS
 
 <h4>A3:</h4>
 1.Адаптивность/отзывчивость:
+<br/>
 Использование использование метатега vieport,использование медиазапросов или bootstrap,применение flexbox.
+<br/>
 2.Использование вендорных префиксов для браузеров,или же автопрефиксов в сборщиках и компиляторах препроцессоров.
+<br/>
 3.Проверка тегов и CSS свойств через ресурсы CanIUse или подобные.По возможности использовать только те,которые поддерживаются большинством браузеров.
+<br/>
 4.Дополнительные скрипты для опрееления типа устройства и/или браузера.
+<br/>
 
 В больших проектах использую ST3 + BrowserSync + Emmet + KOALA + CSS/JS библиотеки + Git + Git Kraken.
 
-Проверял и тестировал через Chrome Devtools + отладка по USB через ADB(Android Debug Bridge).
+Проверял и тестировал через Chrome Devtools + отладка по USB через A
+<br/>DB(Android Debug Bridge).
 Требовалась поддержка основных базовых устройств(Desktop/Tablet/Mobile/Mobile S).
 
 
@@ -68,21 +75,25 @@ HTML/CSS/JS
 
 <h4>A4:</h4>
 Относительно простой вёрстки:
-1.Emmet + emmet snippets.
-2.Browser sync(Аналог Gulp Watch или других).
-3.KOALA compiller + KOALA debug
-4.БЭМ.
-5.Тестировка кода проходит вручную по мере расширения кода.
+<ul>
+  <li>1.Emmet + emmet snippets</li>
+  <li>2.Browser sync(Аналог Gulp Watch или других)</li>
+  <li>3.KOALA compiller + KOALA debug</li>
+  <li>4.БЭМ</li>
+  <li>5.Тестировка кода проходит вручную по мере расширения кода</li>
+</ul>
+
 
 Относительно SPA/PWA:
-1.Babel/ESLint
-2.Webpack(devserver,CLI)
-3.React PropTypes(редко),
-4.LESS/SCSS.
-5.Sublime Syntax+Syntax HighLight.
-6.Vue/VueX devtools/React devtools.
-7.Lighthouse.
-8.Преимущественно Axios для запросов и API/REST API.
+<ul>
+<li>1.Babel/ESLint
+<li>2.Webpack(devserver,CLI)
+<li>3.React PropTypes(редко)
+<li>4.LESS/SCSS
+<li>5.Sublime Syntax+Syntax HighLight
+<li>6.Vue/VueX devtools/React devtools
+<li>7.Lighthouse
+<li>8.Преимущественно Axios для запросов и API/REST API
 
 
 
