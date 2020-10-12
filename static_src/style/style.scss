@@ -75,7 +75,6 @@ html,body{
       @media screen and (min-width: 1024px) and (max-width: 1440px) {
         margin:0 auto;
       }
-      
       .buy{
           display: none;
           font-size:12px;
@@ -106,7 +105,6 @@ html,body{
         }
       &:hover{
         cursor: pointer;
-
           .description__text{
             display: none;
             opacity: 0;
@@ -129,7 +127,7 @@ html,body{
             animation: bottom .5s ease-in-out;
           }
           @keyframes bottom {
-            0%{;
+            0%{
               opacity: 0;
             }70%{
               opacity: 0;
