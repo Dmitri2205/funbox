@@ -148,8 +148,11 @@ html,body{
         }
       }
        &:nth-child(3){
-          .app__wraper_helper-item:first-child{
+          .app__wraper_helper-item{
           border:3px solid #FFF44B;
+          &:first-child{
+          border:3px solid #FFF44B;
+          }
           &:before{
             background-color:#FFF44B ;
           }

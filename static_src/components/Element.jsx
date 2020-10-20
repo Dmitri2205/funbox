@@ -7,7 +7,7 @@ return(
 <div className="app__wraper_helper-item"
      style={props.missed === props.index ? {border:'3px solid gray',animation:'unset'}:{border:'3px solid #d91667'} }
 >
-<span className='borderPiece' style={props.missed === props.index ? {backgroundColor:'gray'}:{backgroundColor:'#d91667'}}></span>
+<span className='borderPiece' style={props.missed === props.index ? {backgroundColor:'gray'}:{2}}></span>
    <div className="app__wraper_helper-itemText"
         style={props.missed === props.index ? {filter:'grayscale(100%)'} : {filter:'unset'}}
         onMouseOver={(event)=>{props.selectEffect(event)}}
