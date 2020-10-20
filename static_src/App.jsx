@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Element from './components/Element';
-import Form from './components/Form';
 import style from "./style/style.scss";
 
 export default class App extends React.Component {
