@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Element from './components/Element';
-import style from "./style/style.scss";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -10,13 +9,14 @@ export default class App extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.promptAnswer = this.promptAnswer.bind(this);
         this.cartList = React.createRef();
+        this.cartArrow = React.createRef();
     };
     state = {
-        selected: [],//Порядковый массив корзины для сопоставления
-        missed: 0,  //Порядковый номер недоступой упаковки
-        cart: [],  //Массив с элементами корзины
-        total:" ",
-        info: [{
+        selected: [], //Порядковый массив корзины для сопоставления
+        missed: 0, //Порядковый номер недоступой упаковки
+        cart: [], //Массив с элементами корзины
+        total: " ",
+        info: [{ //Массив информации о товаре
                 name: "фуа-гра",
                 count: '10',
                 weight: '0,5',
@@ -37,19 +37,34 @@ export default class App extends React.Component {
                 description: 'Филе из цыплят с трюфелями в бульоне.',
                 colorScheme: '#FFF44B'
             }
-        ] //Массив информации о товаре
+        ]
     };
     promptAnswer = (event, index) => { //Обработчик "недоступных упаковок".Максимальное знаечение:1
+        const { selected, missed } = this.state;
         event.preventDefault();
-        const answer = confirm("Убрать c" + " " + this.state.info[index-1].name + '?')
-        if (this.state.missed == index) {
+        let clear = [];
+        let answer = confirm("Убрать c" + " " + this.state.info[index - 1].name + '?');
+        if (missed == index) {
             alert("Этот товар уже убран из доступа")
-        }else if(answer) {
-            this.setState({ missed: index });
+            let add = confirm("Добавить этот товар обратно?");
+            if (add) {
+                this.setState({ missed: 0 });
+            } else {
+                alert("Тогда оставим его недоступным");
+            };
+        } else if (answer) {
+            selected.map((item, i) => {
+                if (item === index) {
+                    return item;
+                } else {
+                    clear.push(item);
+                };
+            });
+            this.setState({ missed: index, selected: clear });
         };
-        setTimeout(()=>{
-        this.cartGenerate(index);
-        },50)
+        setTimeout(() => {
+            this.cartGenerate(index);
+        }, 50)
     };
     stop = (e) => { //Функция отмены всплытия событий для дочернего элемента 
         e.stopPropagation();
@@ -58,33 +73,50 @@ export default class App extends React.Component {
         const { info } = this.state;
         let arr = [...info];
         this.stop(e); //Отмена всплытия события для элемента
-        if (type === "name" && index !== this.state.missed) {
-            const name = prompt("С чем изволите?");
-            const n = Number(name);
-            arr[index - 1].name = name;
-            name && n !== n ? this.setState({ info: arr }) :
-            !name ? alert("Нужно что-то ввести")  :
-            typeof n === 'number' ? alert('Цифры сюда не подойдут') : null;
-        } else if (type === "count" && index !== this.state.missed) {
-            const count = Number(prompt("Введите количество порций"));
-            arr[index - 1].count = count;
-            count && typeof count === 'number' ? this.setState({ info: arr }) : alert("введите число");
-        } else if (type === "weight" && index !== this.state.missed) {
-            const weight = Number(prompt("Введите вес"));
-            const n = Number(weight);
-            arr[index - 1].weight = weight;
-            weight && typeof n === "number" ? this.setState({ info: arr }) : alert('Буквы сюда не подойдут');
+        if (index !== this.state.missed) {
+            if (type === "name") {
+                const name = prompt("С чем изволите?");
+                const n = Number(name); //Проверка ввода на "число"
+                arr[index - 1].name = name;
+
+                if (name && n !== n) {
+                    this.setState({ info: arr });
+                    let description = prompt("Товару нужно описание");
+                    if (description) {
+                        arr[index - 1].description = description;
+                    } else {
+                        alert("Описание не добавлено");
+                    }
+                } else if (!name) {
+                    alert("Нужно что-то ввести");
+                } else if (typeof n === 'number') {
+                    alert('Цифры сюда не подойдут');
+                };
+            } else if (type === "count") {
+                const count = Number(prompt("Введите количество порций"));
+                arr[index - 1].count = count;
+                if (count && typeof count === 'number') {
+                    this.setState({ info: arr });
+                } else {
+                    alert("введите число");
+                };
+            } else if (type === "weight") {
+                const weight = Number(prompt("Введите вес"));
+                const n = Number(weight);
+                arr[index - 1].weight = weight;
+                if (weight && typeof n === "number") {
+                    this.setState({ info: arr })
+                } else {
+                    alert('Буквы сюда не подойдут');
+                };
+            };
+        } else {
+            console.log("Редактирование отключено");
         };
     };
     handleClick = (value) => { //Обработчик клика
-        let { selected,missed } = this.state;
-        console.log(value);
-        if (missed) {
-
-        }else{
-            var sorted = [...selected, value].sort((a, b) => { return a - b });
-        };
-
+        let { selected, missed } = this.state;
+        let sorted = [...selected, value].sort((a, b) => { return a - b });
         switch (value) {
             case 1: //Кейсы добавления
                 this.setState({ selected: sorted });
@@ -138,29 +170,27 @@ export default class App extends React.Component {
         let second = 0;
         let third = 0;
 
-        selected.forEach((item)=>{
-            item === 1 && item !== missed ? first = first+1 :
-            item === 2 && item !== missed ? second = second+1 :
-            item === 3 && item !== missed ? third = third+1 : null;
+        selected.forEach((item) => {
+            if (item !== missed ) {
+                item === 1 ? first = first + 1 :
+                item === 2 ? second = second + 1 :
+                item === 3 ? third = third + 1 : null;
+            };
         });
-            console.log('1:'+first + " " + "2:" + second + " " + "3:"+ third);
         let virtualCart = [];
-        virtualCart.push(first,second,third);
-        console.log(virtualCart);
-        let userCart = virtualCart.map((item,i)=>{
-            console.log(item);
-            if (!item && (missed-1) !== i) {
+        virtualCart.push(first, second, third);
+        let userCart = virtualCart.map((item, i) => {
+            if (!item && (missed - 1) !== i) {
                 return;
-            }else if ((missed-1) === i) {
+            } else if ((missed - 1) === i) {
                 return;
-            }else{
+            } else {
                 return <li key={i}>c {info[i].name} {item}</li>
             }
         });
-        let total = Number(); //Очищаем корзину не сбрасывая выбор пользователя при скрытии товара из доступа
-        virtualCart.map((item)=>total += item)
-        console.log(total);
-        this.setState({cart:userCart,total});
+        let total = Number();
+        virtualCart.map((item) => total += item)
+        this.setState({ cart: userCart, total });
     };
 
     selectEffect = (e) => { //Сброс CSS анимации при наведении на упаковку
@@ -197,10 +227,13 @@ export default class App extends React.Component {
     };
     showCart = () => {
         let cart = this.cartList.current;
+        let cartArrow = this.cartArrow.current;
         let cartDisplay = getComputedStyle(cart).display;
         if (cartDisplay === 'none') {
+            cartArrow.style.transform = "rotateX(180deg)";
             cart.style.display = "block";
-        } else {
+        } else if (cartDisplay === "block") {
+            cartArrow.style.transform = "rotateX(0deg)";
             cart.style.display = "none";
         };
     };
@@ -212,10 +245,17 @@ export default class App extends React.Component {
             <div className="app">
             <div className="selected" 
                 style={selected.length === 0 ? {display:'none'}:{display:' '}}
-                onClick={(event)=>{this.showCart()}}
                 >
-                <p>Выбрано {total}</p>
-                <ul ref={this.cartList}>
+                <p>Выбрано {total}
+                    <span ref={this.cartArrow} 
+                          onClick={(event)=>{this.showCart()}}
+                          style={selected.length === 0 ? {transform:'rotateX(0Deg)'}:{}}
+                          >
+                    </span>
+                </p>
+                <ul ref={this.cartList}
+                    style={selected.length === 0 ? {display:'none'}:{}}
+                >
                     {cart}
                 </ul>
             </div>      

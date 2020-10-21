@@ -1,99 +1,168 @@
-html,body{
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-  body{background:url(../../dist/Pattern.png) center repeat;
-  background-size:100%;}
-
-.app{
-  display: block;
-  width: 100%;
-  height: 100%;
-  font-family:"Trebuchet MS" ,sans-serif;
-  @media screen and (max-width:720px)  {
-    height: 90%;
-  }
-  @media screen and (min-width: 720px) and (max-width: 1227px) {
-    height: 90%;
-    padding: 4% 0;
-  }
-    h4{
-      color: white;
-      text-align: center;
-      margin:60px auto 0 auto;
-      padding:0;
-      padding-bottom: 50px;
-      font-size: 36px;
-      font-weight: 100;
-      font-family:"Exo2.0" ,sans-serif;
-      @media screen and (max-width:720px) {
-        font-size: 25px;
-        margin-bottom: 24px;
-      }
-    }
-    .selected{
-      display: block;
-      width: auto;
-      position: absolute;
-      z-index: 9999;
-      top: 20px;
-      right: 20px;
-      padding: 0 10px;
-      background-color:white;
-      border-radius:5px;
-      overflow: hidden;
-      transition:height 1s;
-      cursor: pointer; 
-    ul{
-      display: none;
-      color:black;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-         animation: selected 1s ease-in-out; 
-      }
-    }
-  &__wraper{
-  	display:flex;
-  	flex-direction: row;
-  	justify-content: space-around;
-    flex-wrap: wrap;
-    align-items: center;
-  	width: 90%;
+html,
+body {
+    margin: 0;
+    padding: 0;
     height: 100%;
-  	margin: 0 auto;
-  	color: white;
-    @media screen and (min-width:414px) and (max-width: 890px) {
-        justify-content: flex-start;
-        width: 100%;
-    }
-    @media screen and (min-width: 1024px) {
-      width: 95%;
-      margin: 0 auto;
-    }
-  }
-  .modal{
+}
+
+body {
+    background: url(../../dist/Pattern.png) center repeat;
+    background-size: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.app {
     display: block;
-    width: 15%;
+    width: 100%;
     height: auto;
-    margin-top: 10px;
-    text-align: center;
-    background-color: #fff;
-    color: black;
-    position: absolute;
-    top: 0;
-    left: 43.5%;
-    border-radius: 5px;
-    animation:modal 5s ease;
-    animation-fill-mode: forwards;
-    transition: 5s;
-    @keyframes modal{
-      0%{top:-200px;}
-      10%{top: 0;}
-      80%{top:0;}
-      100%{top:-200px;}
-      
+    font-family: "Trebuchet MS", sans-serif;
+    margin: auto;
+
+    @media screen and (min-width: 720px) and (max-width: 1227px) {
+        ;
+        padding: 4% 0;
     }
-  }
+
+    h4 {
+        color: white;
+        text-align: center;
+        margin: 60px auto 0 auto;
+        padding: 0;
+        padding-bottom: 23px;
+        font-size: 36px;
+        font-weight: 100;
+        font-family: "Exo2.0", sans-serif;
+
+        @media screen and (max-width: 720px) {
+            font-size: 25px;
+            margin-bottom: 24px;
+        }
+    }
+
+    .selected {
+        display: block;
+        width: auto;
+        position: absolute;
+        z-index: 9999;
+        top: 20px;
+        right: 20px;
+        padding: 0 10px;
+        background-color: white;
+        border-radius: 5px;
+        overflow: hidden;
+        transition: height 1s;
+        cursor: pointer;
+
+        ul {
+            display: none;
+            color: black;
+            margin: 0;
+            padding: 5px 0;
+            list-style: none;
+        }
+
+        p {
+            display: inline-flex;
+            margin: 5px auto;
+
+            span {
+                display: block;
+                width: 30px;
+                height: 14px;
+                margin: auto;
+                position: relative;
+                margin-left: 10px;
+                transition: .7s transform;
+                transform: rotateX(0deg);
+
+                &:before {
+                    display: inline-block;
+                    width: 16px;
+                    height: 2px;
+                    content: " ";
+                    transform: rotateZ(33deg);
+                    position: absolute;
+                    background-color: black;
+                    top: 6px;
+                    left: 1px;
+                }
+
+                &:after {
+                    display: inline-block;
+                    width: 16px;
+                    height: 2px;
+                    content: " ";
+                    transform: rotateZ(147deg);
+                    position: absolute;
+                    background-color: black;
+                    top: 6px;
+                    right: 1px;
+                }
+            }
+        }
+    }
+
+    &__wraper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 90%;
+        height: auto;
+        margin: auto;
+        color: white;
+
+        @media screen and (min-width: 478px) and (max-width: 780px) {
+            justify-content: flex-start;
+            width: 100%;
+        }
+
+        @media screen and (min-width: 1024px) {
+            width: 100%;
+            margin: 0 auto;
+            
+        }
+    }    
+
+    .modal {
+        display: block;
+        width: 15%;
+        height: auto;
+        margin-top: 10px;
+        text-align: center;
+        background-color: #fff;
+        color: black;
+        position: absolute;
+        top: 0;
+        left: 43.5%;
+        border-radius: 5px;
+        animation: modal 5s ease;
+        animation-fill-mode: forwards;
+        transition: 5s;
+
+        @keyframes modal {
+            0% {
+                top: -200px;
+            }
+
+            10% {
+                top: 0;
+            }
+
+            80% {
+                top: 0;
+            }
+
+            100% {
+                top: -200px;
+            }
+
+        }
+    }
 }

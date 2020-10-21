@@ -1,11 +1,11 @@
 import React from 'react';
 import RactDOM from 'react-dom';
-import element from "../style/element.scss";
+
 
 export default function Element(props) {
     let count = Math.floor(props.count / 20);
     return (
-<div className="app__wraper_helper">
+        <div className="app__wraper_helper">
 <div className="app__wraper_helper-item"
      style={props.missed === props.index ? {border:'3px solid gray',animation:'unset'} : {borderColor:props.cs} }
      onMouseOver={(event)=>{props.selectEffect(event),false}}
@@ -26,10 +26,10 @@ export default function Element(props) {
               style={{ position:'relative',zIndex:'9999',marginRight:"2px"}}
             >{props.count}</b> порций <br/> 
             <b>{count <= 0 ? null : count } </b>
-             мыш{
+             мыш{//Проверка правописания
                    count == 0 ? 'ь' : null
+                || count%10 == 1 ? 'ь' : null 
                 ||(count%10 == 0 || count%10 >= 5) || (count > 10 && count < 21) ? 'ей' : null 
-                || count%10 <= 1 ? 'ь' : null 
                 || count%10 < 5  ? 'и' : null  
               } в подарок
               <br/>
