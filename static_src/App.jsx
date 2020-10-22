@@ -80,18 +80,22 @@ export default class App extends React.Component {
                 arr[index - 1].name = name;
 
                 if (name && n !== n) {
-                    this.setState({ info: arr });
                     let description = prompt("Товару нужно описание");
+                    
                     if (description) {
+                        arr[index - 1].name = name;
                         arr[index - 1].description = description;
+                        this.setState({ info: arr });
                     } else {
                         alert("Описание не добавлено");
-                    }
+                    };
+
                 } else if (!name) {
                     alert("Нужно что-то ввести");
                 } else if (typeof n === 'number') {
                     alert('Цифры сюда не подойдут');
                 };
+
             } else if (type === "count") {
                 const count = Number(prompt("Введите количество порций"));
                 arr[index - 1].count = count;
@@ -106,8 +110,10 @@ export default class App extends React.Component {
                 arr[index - 1].weight = weight;
                 if (weight && typeof n === "number") {
                     this.setState({ info: arr })
-                } else {
+                }else if (n !== n){
                     alert('Буквы сюда не подойдут');
+                }else if (!weight) {
+                    alert("Нужно что-то ввести");
                 };
             };
         } else {
@@ -264,7 +270,10 @@ export default class App extends React.Component {
                {elements}
         </div>
         <div className="modal">
-            <p>ПКМ на упаковке для изменения доступности</p>
+            <p>Кликните ПКМ на упаковке для изменения доступности</p>
+        </div>
+        <div className="modalMobile">
+            <p>Долгое удержание на упаковке для изменения доступности</p>
         </div>
     </div>
         )

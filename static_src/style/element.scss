@@ -1,3 +1,12 @@
+@mixin desc{
+  width: 100%;
+  font-size: 13px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+
+
   .app__wraper_helper{
       display: block;
       margin:25px auto;
@@ -9,10 +18,11 @@
       }
       .buy{
           display: none;
-          font-size:12px;
-          text-align: center;
-          margin: 10px auto;
+          @include desc;
           transition: 1s;
+          @media screen and (min-width: 478px) and (max-width: 780px) {
+            font-size: 18px;
+          }
           span{
             color:#1698d9;
             cursor: pointer;
@@ -20,19 +30,22 @@
           }
         }
       .description__text{
-        display: block;
-          text-align: center;
-          font-size: 12px;
-          margin: 10px auto ;
+          display: block;
+          @include desc;
           opacity: 1;
           animation: bottom .5s ease-in-out;
+          @media screen and (min-width: 414px) and (max-width: 780px) {
+            font-size: 16px;
+            margin: 10px auto;
+          }
         &-missed{
             display: block;
-            text-align: center;
-            font-size: 12px;
-            margin: 10px auto ;
+            @include desc;
             opacity: 1;
             transition: opacity 0.5s;
+            @media screen and (min-width: 478px) and (max-width: 780px) {
+              font-size: 18px;
+            }
           }
         }
       &:hover{

@@ -1,3 +1,23 @@
+@mixin modal{
+    display: none;
+    width: 50%;
+    height: auto;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    background-color: #fff;
+    color: black;
+    position: absolute;
+    top: 0;
+    left: 39%;
+    border-radius: 5px;
+    animation: modal 5s ease;
+    animation-fill-mode: forwards;
+    transition: 5s;
+}
+
+
+
 html,
 body {
     margin: 0;
@@ -22,9 +42,7 @@ body {
     height: auto;
     font-family: "Trebuchet MS", sans-serif;
     margin: auto;
-
     @media screen and (min-width: 720px) and (max-width: 1227px) {
-        ;
         padding: 4% 0;
     }
 
@@ -43,7 +61,28 @@ body {
             margin-bottom: 24px;
         }
     }
+    &__wraper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 90%;
+        height: auto;
+        margin: auto;
+        color: white;
 
+        @media screen and (min-width: 478px) and (max-width: 780px) {
+            justify-content: flex-start;
+            width: 100%;
+        }
+
+        @media screen and (min-width: 1024px) {
+            width: 100%;
+            margin: 0 auto;
+            
+        }
+    }    
     .selected {
         display: block;
         width: auto;
@@ -107,45 +146,21 @@ body {
         }
     }
 
-    &__wraper {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 90%;
-        height: auto;
-        margin: auto;
-        color: white;
-
-        @media screen and (min-width: 478px) and (max-width: 780px) {
-            justify-content: flex-start;
-            width: 100%;
-        }
-
-        @media screen and (min-width: 1024px) {
-            width: 100%;
-            margin: 0 auto;
-            
-        }
-    }    
-
     .modal {
-        display: block;
-        width: 15%;
-        height: auto;
-        margin-top: 10px;
-        text-align: center;
-        background-color: #fff;
-        color: black;
-        position: absolute;
-        top: 0;
-        left: 43.5%;
-        border-radius: 5px;
-        animation: modal 5s ease;
-        animation-fill-mode: forwards;
-        transition: 5s;
-
+        @include modal;
+        @media screen and (min-width: 1240px) {
+           display:block;
+           width: auto;
+        }
+    }
+    .modalMobile{
+        @include modal;
+        @media screen and (min-width: 414px) and (max-width: 1240px) {
+            display: block;
+            width: 90%;
+            left: 5%;
+        }
+    }
         @keyframes modal {
             0% {
                 top: -200px;
@@ -165,4 +180,3 @@ body {
 
         }
     }
-}
