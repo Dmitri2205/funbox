@@ -67,31 +67,39 @@ Q7:
 
 
 A7: Сайты:
-Habr,
-developer.mozilla.org,
-learn.javascript.ru,
-htmlbook.ru,
-ru.reactjs.org,
-StackOwerflow,
-документация к конкретному инструменту\библиотеке\фрэймворку.
+<br/>
+<ul>
+ <li>Habr</li>
+<li>developer.mozilla.org</li>
+<li>learn.javascript.ru</li>
+<li>htmlbook.ru</li>
+<li>ru.reactjs.org</li>
+<li>StackOwerflow</li>
+<li>документация к конкретному инструменту\библиотеке\фрэймворку</li>
+</ul>
+<br/>
 Каналы и паблики:
-TechRocks,
-Типичный Верстальщик,
-Love Frontend,
-Senior Frontend,
-For Web,
-Code Blog(+ общий чат по JS),
-Web /> HTML CSS JavaScript,
-Hexlet(+подкасты),
-Веб-стандарты подкаст,
-Журнал "КОД",
-Яндекс для разработчиков.
+<ul>
+<li>TechRocks</li>
+<li>Типичный Верстальщик</li>
+<li>Love Frontend</li>
+<li>Senior Frontend</li>
+<li>For Web</li>
+<li>Code Blog(+ общий чат по JS)</li>
+<li>Web /> HTML CSS JavaScript</li>
+<li>Hexlet(+подкасты)</li>
+<li>Веб-стандарты подкаст</li>
+<li>Журнал "КОД"</li>
+<li>Яндекс для разработчиков</li>
+</ul>
+<br/>
  YouTube каналы:
- Владилен Минин,
- LoftBlog,
-
- WebDev.
-
+<ul>
+<li>Владилен Минин</li>
+<li>LoftBlog</li>
+<li>WebDev</li>
+<ul>
+<br/>
 Оба направления считаю интересными,но больше нравится программировть на JS.Предпочитаю писать на React.js.Близка концепция данной библиотеки,подход к написанию(JSX) кода и возможности.
 Планирую изучить более низкоуровневые языки(C,Java,Pyton).Хотелось бы создавать полезные для людей приложения или программы,именно по этому я начал с web-разработки.
 
